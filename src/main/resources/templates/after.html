@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes By Buddha</title>
+  <link rel="stylesheet" th:href="@{/css/icon/all.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/after.css}"/>
+</head>
+
+
+<body>
+    <main>
+      <div class="container">
+        <p id="quote">과거에 얽매이면 마음의 짐이 되어 고통을 준다.</p>
+        <div class="button-container">
+<!--          <button><i class="fa-solid fa-play"></i></button>-->
+          <button onmouseleave="mouseleave()" onclick="copy('quote')" class="tooltip"><i class="fa-solid fa-copy">
+            <span id="copy" class="tooltiptext">Copy quote</span>
+          </i></button>
+          <button th:onclick="|location.href='@{/home}'|"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+      </div>
+    </main>
+
+</body>
+</html>
+
+<script>
+  function copy(id)
+  {
+    var r = document.createRange();
+    r.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    document.getElementById("copy").innerHTML = "Copied";
+  }
+
+  function  mouseleave()
+  {
+    document.getElementById("copy").innerHTML = "Copy quote";
+  }
+</script>
