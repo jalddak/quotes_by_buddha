@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class QuoteController {
 
     @GetMapping("/")
-    public String welcome(){
-        return "before";
+    public String welcome() {
+        return "service/before";
     }
 
     @GetMapping("/home")
-    public String home(){
-        return "before";
+    public String home() {
+        return "service/before";
     }
 
     @GetMapping("/quote")
-    public String quote(){
-        return "after";
+    public String quote() {
+        return "service/after";
     }
 }

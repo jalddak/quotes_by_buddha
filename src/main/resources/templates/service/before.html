@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: common_header(~{::title},~{::link})}">
+    <title>Quotes By Buddha</title>
+    <link rel="stylesheet" th:href="@{/css/before.css}"/>
+</head>
+
+
+<body>
+<main>
+    <div class="container">
+        <button th:onclick="|location.href='@{/quote}'|"><i class="fa-solid fa-quote-left"></i> . . . <i
+                class="fa-solid fa-quote-right"></i></button>
+    </div>
+</main>
+
+</body>
+</html>

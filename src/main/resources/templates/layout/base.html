@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title,links)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Quotes By Buddha</title>
+    <link rel="stylesheet" th:href="@{/css/icon/all.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/background.css}"/>
+    <link rel="icon" th:href="@{/img/favicon-2.svg}"/>
+    <link rel="mask-icon" th:href="@{/img/safari-favicon-2.svg}" color="#000000"/>
+    <link rel="apple-touch-icon" th:href="@{/img/favicon-2.svg}"/>
+
+    <th:block th:replace="${links}"/>
+</head>
