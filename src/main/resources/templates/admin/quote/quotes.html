@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{page.quotes}">명언 목록</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/quotes.css}"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.quotes}">명언 목록</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addQuote.html'"
+                    th:onclick="|location.href='@{/admin/quotes/add}'|"
+                    type="button" th:text="#{page.addQuote}">상품 등록
+            </button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- SELECT -->
+    <!--    <div>-->
+    <!--        <select th:field="*{SortTypes}" class="form-select">-->
+    <!--            <option value="">====</option>-->
+    <!--            <option th:each="SortType : ${SortTypes}" th:value="${SortType.name()}"-->
+    <!--                    th:text="${SortType.description}">FAST-->
+    <!--            </option>-->
+    <!--        </select>-->
+    <!--    </div>-->
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{label.quote.id}" class="table-visible"></th>
+                <th th:text="#{label.quote.content}">내용</th>
+                <th th:text="#{label.quote.uploadDate}" class="table-visible">작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="quote : ${quotes}">
+                <td th:text="${quote.id}" class="table-visible">id</td>
+                <td style="text-align: left;">
+                    <a href="quotes.html" th:text="${quote.content}"
+                       th:href="@{|/admin/quotes/${quote.id}|}"
+                       style="text-decoration-line: none;">내용</a>
+                </td>
+                <td th:text="${#temporals.format(quote.uploadDate, 'yyyy-MM-dd')}" class="table-visible">작성일</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="my-4">
+
+</div> <!-- /container -->
+
+</body>
+</html>

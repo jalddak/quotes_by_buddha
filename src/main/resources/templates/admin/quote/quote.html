@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${quote.content}"></title>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.quote}">명언 정보</h2>
+    </div>
+
+    <!-- 추가 -->
+    <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
+
+    <div th:object="${quote}">
+        <div style="margin-bottom: 10px">
+            <label for="quoteId" th:text="#{label.quote.id}">글번호</label>
+            <input type="text" id="quoteId" name="quoteId" class="form-control" value="1" th:value="*{id}" readonly>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <div style="margin-bottom: 10px">
+                <label for="uploadDate" th:text="#{label.quote.uploadDate}">작성일</label>
+                <input type="text" id="uploadDate" class="form-control"
+                       th:value="*{#temporals.format(uploadDate, 'yyyy-MM-dd')}" readonly></input>
+            </div>
+            <div th:if=" *{editDate !=null}">
+                <label for="editDate" th:text="#{label.quote.editDate}">촤근 수정일</label>
+                <input type="text" id="editDate" class="form-control"
+                       th:value="*{#temporals.format(editDate, 'yyyy-MM-dd')}" readonly></input>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <label for="content" th:text="#{label.quote.content}">내용</label>
+            <textarea type="text" id="content" class="form-control" rows="10"
+                      th:field="*{content}" readonly></textarea>
+        </div>
+    </div>
+
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editQuote.html'"
+                    th:onclick="|location.href='@{/admin/quotes/{quoteId}/edit(quoteId=${quote.id})}'|"
+                    type="button" th:text="#{page.updateQuote}">명언 수정
+            </button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='quotes.html'"
+                    th:onclick="|location.href='@{/admin/quotes}'|"
+                    type="button" th:text="#{button.cancel}">목록으로
+            </button>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+</body>
+</html>

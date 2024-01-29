@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>명언 수정</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.updateQuote}">명언 수정</h2>
+    </div>
+
+    <form action="quote.html" th:action th:object="${quote}" method="post">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <label for="quoteId" th:text="#{label.quote.id}">글번호</label>
+            <input type="text" id="quoteId" name="quoteId" class="form-control" value="1" th:field="*{id}" readonly>
+        </div>
+        <div style="margin-bottom: 10px">
+            <div style="margin-bottom: 10px">
+                <label for="uploadDate" th:text="#{label.quote.uploadDate}">작성일</label>
+                <input type="text" id="uploadDate" class="form-control"
+                       th:field="*{uploadDate}" readonly></input>
+            </div>
+            <div th:if=" *{editDate !=null}">
+                <label for="editDate" th:text="#{label.quote.editDate}">촤근 수정일</label>
+                <input type="text" id="editDate" class="form-control"
+                       th:field="*{editDate}" readonly></input>
+            </div>
+        </div>
+        <div>
+            <label for="content" th:text="#{label.quote.content}">내용</label>
+            <textarea type="text" id="content" rows="10" placeholder="내용을 입력하세요" class="form-control"
+                      th:errorclass="field-error" th:field="*{content}"></textarea>
+            <div class="field-error" th:errors="*{content}">
+                내용 오류
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.save}">명언 수정</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='quotes.html'"
+                        th:onclick="|location.href='@{/admin/quotes/{quoteId}(quoteId=${quote.id})}'|"
+                        type="button" th:text="#{button.cancel}">취소
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>
