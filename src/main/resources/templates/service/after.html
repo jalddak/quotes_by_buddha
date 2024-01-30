@@ -11,7 +11,7 @@
     <div class="container">
         <p id="quote" th:text="${quote.content}">과거에 얽매이면 마음의 짐이 되어 고통을 준다.</p>
         <div class="button-container">
-            <button onmouseleave="mouseleave()" onclick="copy('quote')" class="tooltip"><i class="fa-solid fa-copy">
+            <button onmouseleave="mouseleave()" onclick="copy()" class="tooltip"><i class="fa-solid fa-copy">
                 <span id="copy" class="tooltiptext">Copy quote</span>
             </i></button>
             <button th:onclick="window.location.reload()"><i class="fa-solid fa-rotate-right"></i></button>
@@ -23,15 +23,13 @@
 </body>
 </html>
 
-<script>
-    function copy(id) {
-        var r = document.createRange();
-        r.selectNode(document.getElementById(id));
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(r);
-        document.execCommand('copy');
-        window.getSelection().removeAllRanges();
-        document.getElementById("copy").innerHTML = "Copied";
+<script th:inline="javascript">
+    function copy() {
+        var content = [[${quote.content}]];
+        window.navigator.clipboard.writeText(content).then(() => {
+            // 복사가 완료되면 이 부분이 호출된다.
+            document.getElementById("copy").innerHTML = "Copied";
+        });
     }
 
     function mouseleave() {
