@@ -1,4 +1,4 @@
-package toy.buddha.service;
+package toy.buddha.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

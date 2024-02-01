@@ -3,15 +3,18 @@
 <head th:replace="~{layout/base :: common_header(~{::title},~{::link},~{::style})}">
     <title>Quotes By Buddha</title>
     <link rel="stylesheet" th:href="@{/css/before.css}"/>
-    <style></style>
+    <style>
+        .container {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 
 <body>
 <main>
     <div class="container">
-        <button th:onclick="|location.href='@{/quote}'|"><i class="fa-solid fa-quote-left"></i> . . . <i
-                class="fa-solid fa-quote-right"></i></button>
+        <button th:onclick="|location.href='@{/admin/login}'|">로그인</button>
     </div>
 </main>
 
