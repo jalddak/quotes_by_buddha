@@ -84,7 +84,11 @@ public class QuoteController {
         redirectAttributes.addAttribute("status", true);
 
         return "redirect:/admin/quotes/{quoteId}";
+    }
 
-
+    @GetMapping("/{quoteId}/delete")
+    public String deleteQuote(@PathVariable Long quoteId) {
+        quoteRepository.delete(quoteId);
+        return "redirect:/admin/quotes";
     }
 }

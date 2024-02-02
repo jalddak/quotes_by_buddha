@@ -14,9 +14,11 @@
 <body>
 <main>
     <div class="container">
+        <button th:onclick="|location.href='@{/}'|">홈으로</button>
+        <div style="margin-top: 10%"></div>
         <button th:onclick="|location.href='@{/admin/logout}'|">로그아웃</button>
         <div style="margin-top: 10%"></div>
-        <button th:onclick="|location.href='@{/admin/quotes}'|">명언관리</button>
+        <button th:onclick="|location.href='@{/admin/quotes}'|">명언 관리</button>
     </div>
 </main>
 

@@ -34,6 +34,10 @@ public class QuoteRepository {
         quote.setEditDate(LocalDateTime.now());
     }
 
+    public void delete(Long quoteId) {
+        store.remove(quoteId);
+    }
+
     public void clearStore() {
         store.clear();
     }

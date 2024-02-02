@@ -60,6 +60,13 @@
             </button>
         </div>
         <div class="col">
+            <button class="w-100 btn btn-danger btn-lg"
+                    onclick="location.href='quotes.html'"
+                    th:onclick="|location.href='@{/admin/quotes/{quoteId}/delete(quoteId=${quote.id})}'|"
+                    type="button">명언 삭제
+            </button>
+        </div>
+        <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
                     onclick="location.href='quotes.html'"
                     th:onclick="|location.href='@{/admin/quotes}'|"

@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import toy.buddha.admin.domain.Admin;
 import toy.buddha.admin.domain.SessionConst;
 import toy.buddha.admin.dto.AdminLoginDto;
@@ -29,8 +26,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("admin") AdminLoginDto adminLoginDto
-            , BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Valid @ModelAttribute("admin") AdminLoginDto adminLoginDto, BindingResult bindingResult,
+                        @RequestParam(defaultValue = "/admin") String redirectURL, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "admin/loginForm";
@@ -51,7 +48,7 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_ADMIN, loginAdmin);
 
 
-        return "redirect:/admin";
+        return "redirect:" + redirectURL;
     }
 
     @GetMapping("/logout")

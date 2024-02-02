@@ -20,11 +20,6 @@ public class MainController {
         return "service/before";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "service/before";
-    }
-
     @GetMapping("/quote")
     public String quote(Model model) {
         List<Quote> quotes = quoteRepository.findAll();
